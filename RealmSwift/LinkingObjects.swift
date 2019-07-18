@@ -372,6 +372,11 @@ extension LinkingObjects: RealmCollection {
         return RLMIterator(collection: rlmResults)
     }
 
+    /// :nodoc:
+    public func _asNSFastEnumerator() -> Any {
+        return rlmResults
+    }
+
     // MARK: Collection Support
 
     /// The position of the first element in a non-empty collection.

@@ -522,6 +522,16 @@ extension RealmOptional: ManagedPropertyType where Value: ManagedPropertyType {
 
 /// :nodoc:
 internal class ObjectUtil {
+    private static let runOnce: Void = {
+        RLMSwiftAsFastEnumeration = { (obj: Any) -> Any? in
+            // Intermediate cast to AnyObject due to https://bugs.swift.org/browse/SR-8651
+            if let collection = obj as AnyObject as? _RealmCollectionEnumerator {
+                return collection._asNSFastEnumerator()
+            }
+            return nil
+        }
+    }()
+
     private class func swiftVersion() -> NSString {
 #if SWIFT_PACKAGE
         return "5.1"
@@ -581,6 +591,8 @@ internal class ObjectUtil {
     }
 
     internal class func getSwiftProperties(_ object: RLMObjectBase) -> [RLMProperty] {
+        _ = ObjectUtil.runOnce
+
         let cls = type(of: object)
 
         var indexedProperties: Set<String>!
