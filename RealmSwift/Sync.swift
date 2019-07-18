@@ -1140,12 +1140,6 @@ internal class KeyValueObservationNotificationToken: NotificationToken {
     }
 }
 
-// MARK: - Migration assistance
-
-/// :nodoc:
-@available(*, unavailable, renamed: "SyncPermission")
-public final class SyncPermissionValue { }
-
 // MARK: - Permissions
 
 /**
