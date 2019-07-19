@@ -73,7 +73,7 @@ void RLMDisableSyncToDisk() {
 }
 
 static void RLMAddSkipBackupAttributeToItemAtPath(std::string const& path) {
-    [[NSURL fileURLWithPath:@(path.c_str())] setResourceValue:@YES forKey:NSURLIsExcludedFromBackupKey error:nil];
+//    [[NSURL fileURLWithPath:@(path.c_str())] setResourceValue:@YES forKey:NSURLIsExcludedFromBackupKey error:nil];
 }
 
 @implementation RLMRealmNotificationToken
